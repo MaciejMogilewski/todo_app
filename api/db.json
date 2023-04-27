@@ -1,26 +1,10 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-04-27T17:29:02.839Z",
-      "description": "blada",
-      "name": "dupa",
-      "status": "open",
-      "apiId": "v1",
-      "id": 1
-    },
-    {
-      "addedDate": "2023-04-27T17:36:53.983Z",
-      "description": "blada",
-      "name": "dupa",
-      "status": "open",
-      "apiId": "v1",
-      "id": 2
-    },
-    {
       "addedDate": "2023-04-27T17:37:03.383Z",
       "description": "blada",
       "name": "dupa",
-      "status": "open",
+      "status": "closed",
       "apiId": "v1",
       "id": 3
     },
@@ -28,17 +12,9 @@
       "addedDate": "2023-04-27T17:39:10.206Z",
       "description": "blada",
       "name": "dupa",
-      "status": "open",
+      "status": "closed",
       "apiId": "v1",
       "id": 4
-    },
-    {
-      "addedDate": "2023-04-27T17:47:52.405Z",
-      "description": "dsfsd",
-      "name": "dfsf",
-      "status": "open",
-      "apiId": "v1",
-      "id": 5
     }
   ],
   "operations": []
