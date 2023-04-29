@@ -5,17 +5,79 @@
       "description": "blada",
       "name": "dupa",
       "status": "closed",
-      "apiId": "v1",
       "id": 3
     },
     {
-      "addedDate": "2023-04-27T17:39:10.206Z",
-      "description": "blada",
-      "name": "dupa",
-      "status": "closed",
-      "apiId": "v1",
+      "addedDate": "2023-04-29T06:57:35.674Z",
+      "description": "bbbb",
+      "name": "aaaaa",
+      "status": "open",
       "id": 4
+    },
+    {
+      "addedDate": "2023-04-29T07:13:40.288Z",
+      "description": "dddd",
+      "name": "cccc",
+      "status": "open",
+      "id": 5
     }
   ],
-  "operations": []
+  "operations": [
+    {
+      "description": "ccccc",
+      "addedDate": "2023-04-29T06:57:42.099Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 1
+    },
+    {
+      "description": "sad",
+      "addedDate": "2023-04-29T07:01:53.737Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 2
+    },
+    {
+      "description": "sad",
+      "addedDate": "2023-04-29T07:01:54.657Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 3
+    },
+    {
+      "description": "sad",
+      "addedDate": "2023-04-29T07:02:34.122Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 4
+    },
+    {
+      "description": "sad",
+      "addedDate": "2023-04-29T07:02:34.818Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 5
+    },
+    {
+      "description": "sad",
+      "addedDate": "2023-04-29T07:07:37.650Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 6
+    },
+    {
+      "description": "sss",
+      "addedDate": "2023-04-29T07:07:49.993Z",
+      "spentTime": 0,
+      "taskId": 4,
+      "id": 7
+    },
+    {
+      "description": "eee",
+      "addedDate": "2023-04-29T07:13:43.520Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 8
+    }
+  ]
 }
