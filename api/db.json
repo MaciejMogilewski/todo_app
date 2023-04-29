@@ -8,104 +8,34 @@
       "id": 3
     },
     {
-      "addedDate": "2023-04-29T06:57:35.674Z",
-      "description": "bbbb",
-      "name": "aaaaa",
-      "status": "open",
+      "addedDate": "2023-04-29T11:22:19.520Z",
+      "description": "wwwwww",
+      "name": "qqqqq",
+      "status": "closed",
       "id": 4
     },
     {
-      "addedDate": "2023-04-29T07:13:40.288Z",
-      "description": "dddd",
-      "name": "cccc",
-      "status": "open",
+      "addedDate": "2023-04-29T11:34:00.199Z",
+      "description": "hhhhhhhhhh",
+      "name": "ggggggg",
+      "status": "closed",
       "id": 5
     },
     {
-      "addedDate": "2023-04-29T08:56:13.623Z",
-      "description": "wwwwww",
-      "name": "qqqqqq",
-      "status": "open",
+      "addedDate": "2023-04-29T11:48:05.565Z",
+      "description": "llllllll",
+      "name": "ppppppp",
+      "status": "closed",
       "id": 6
-    },
-    {
-      "addedDate": "2023-04-29T09:07:02.333Z",
-      "description": "bvnv",
-      "name": "bnbv",
-      "status": "open",
-      "id": 7
     }
   ],
   "operations": [
     {
-      "description": "ccccc",
-      "addedDate": "2023-04-29T06:57:42.099Z",
-      "spentTime": 0,
-      "taskId": 4,
-      "id": 1
-    },
-    {
-      "description": "sad",
-      "addedDate": "2023-04-29T07:01:53.737Z",
-      "spentTime": 0,
-      "taskId": 4,
-      "id": 2
-    },
-    {
-      "description": "sad",
-      "addedDate": "2023-04-29T07:01:54.657Z",
-      "spentTime": 0,
-      "taskId": 4,
-      "id": 3
-    },
-    {
-      "description": "sad",
-      "addedDate": "2023-04-29T07:02:34.122Z",
-      "spentTime": 0,
-      "taskId": 4,
-      "id": 4
-    },
-    {
-      "description": "sad",
-      "addedDate": "2023-04-29T07:02:34.818Z",
-      "spentTime": 0,
-      "taskId": 4,
-      "id": 5
-    },
-    {
-      "description": "sad",
-      "addedDate": "2023-04-29T07:07:37.650Z",
-      "spentTime": 10,
-      "taskId": 4,
-      "id": 6
-    },
-    {
-      "description": "sss",
-      "addedDate": "2023-04-29T07:07:49.993Z",
-      "spentTime": 11,
-      "taskId": 4,
-      "id": 7
-    },
-    {
-      "description": "eee",
-      "addedDate": "2023-04-29T07:13:43.520Z",
-      "spentTime": 0,
-      "taskId": 5,
-      "id": 8
-    },
-    {
-      "description": "zzzzz",
-      "addedDate": "2023-04-29T08:56:19.271Z",
-      "spentTime": 0,
+      "description": "kkkkkkk",
+      "addedDate": "2023-04-29T11:48:09.525Z",
+      "spentTime": 666,
       "taskId": 6,
-      "id": 9
-    },
-    {
-      "description": "sdsd",
-      "addedDate": "2023-04-29T09:07:04.973Z",
-      "spentTime": 0,
-      "taskId": 7,
-      "id": 10
+      "id": 1
     }
   ]
 }

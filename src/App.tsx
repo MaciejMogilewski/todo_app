@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { OperationForm } from './components/OperationForm.tsx';
 import {
+    callOperationsApi,
     callTaskApi,
     getOperationsApi,
     getTaskApi,
@@ -73,15 +74,49 @@ function App() {
         };
     }
 
-    function handleDeleteTask(id: number) {
+    function handleDeleteTask(taskToDelete: Task) {
         return async function () {
             await callTaskApi({
-                id,
+                id: taskToDelete.id,
                 method: 'delete',
             });
 
-            setTasks(tasks.filter(task => task.id !== id));
+            // Todo pamiętać, że poza json server, to może być konieczne
+            // for (const operation of taskToDelete.operations) {
+            //     await callOperationsApi({
+            //         id: operation.id,
+            //         method: 'delete',
+            //     });
+            // }
+
+            setTasks(tasks.filter(task => task.id !== taskToDelete.id));
         };
+    }
+
+    function handleDeleteOperation(operationToDelete: Operation) {
+        return async function () {
+            await callOperationsApi({
+                id: operationToDelete.id,
+                method: 'delete',
+            });
+
+            setTasks(
+                tasks.map(task => ({
+                    ...task,
+                    operations: task.operations.filter(
+                        operation => operation !== operationToDelete
+                    ),
+                }))
+            );
+        };
+    }
+
+    function calculateTotalTime(operations: Operation[]): string {
+        const totalMinutes = operations.reduce(
+            (acc, ce) => acc + ce.spentTime,
+            0
+        );
+        return `${~~(totalMinutes / 60)}h ${totalMinutes % 60}m`;
     }
 
     return (
@@ -112,7 +147,7 @@ function App() {
                     <div key={task.id}>
                         <b>{task.name} </b>
                         <span>{task.description} </span>
-                        {task.status === 'open' && (
+                        {task.status === 'open' ? (
                             <>
                                 <button
                                     onClick={() => setActiveTaskId(task.id)}
@@ -123,10 +158,10 @@ function App() {
                                     Finish
                                 </button>
                             </>
+                        ) : (
+                            <b>{calculateTotalTime(task.operations)}</b>
                         )}
-                        <button onClick={handleDeleteTask(task.id)}>
-                            Delete
-                        </button>
+                        <button onClick={handleDeleteTask(task)}>Delete</button>
                         {activeTaskId === task.id && (
                             <OperationForm
                                 taskId={task.id}
@@ -139,7 +174,8 @@ function App() {
                             {task.operations.map(operation => (
                                 <div key={operation.id}>
                                     {operation.description}{' '}
-                                    {operation.spentTime}
+                                    {~~(operation.spentTime / 60)}h{' '}
+                                    {operation.spentTime % 60}m
                                     {activeOperationId === operation.id ? (
                                         <AddSpentTimeForm
                                             operation={operation}
@@ -147,17 +183,27 @@ function App() {
                                             onCancel={setActiveOperationId}
                                         />
                                     ) : (
+                                        task.status === 'open' && (
+                                            <button
+                                                onClick={() =>
+                                                    setActiveOperationId(
+                                                        operation.id
+                                                    )
+                                                }
+                                            >
+                                                Add spent time
+                                            </button>
+                                        )
+                                    )}
+                                    {task.status === 'open' && (
                                         <button
-                                            onClick={() =>
-                                                setActiveOperationId(
-                                                    operation.id
-                                                )
-                                            }
+                                            onClick={handleDeleteOperation(
+                                                operation
+                                            )}
                                         >
-                                            Add spent time
+                                            Delete
                                         </button>
                                     )}
-                                    <button>Delete</button>
                                 </div>
                             ))}
                             <br />

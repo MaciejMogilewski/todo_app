@@ -26,6 +26,7 @@ function AddSpentTimeForm({
 
         operation.spentTime += value;
         setTasks(prev => [...prev]);
+        onCancel(null);
     }
 
     return (

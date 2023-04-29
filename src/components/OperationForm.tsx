@@ -37,6 +37,8 @@ export function OperationForm({
                 return task;
             })
         );
+
+        onCancel(null);
     }
 
     return (
