@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { OperationForm } from './components/OperationForm';
-import { callApi, Operation } from './helpers/Api';
+import { OperationForm } from './components/OperationForm.tsx';
+import {
+    callTaskApi,
+    getOperationsApi,
+    getTaskApi,
+    Operation,
+} from './helpers/Api.ts';
+import AddSpentTimeForm from './components/AddSpentTimeForm';
 
 export interface TaskStatus {
     status: 'open' | 'closed';
 }
-
 export interface Task extends TaskStatus {
     name: string;
     description: string;
@@ -20,22 +24,15 @@ function App() {
     const [description, setDescription] = useState('');
     const [tasks, setTasks] = useState<Task[]>([]);
     const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+    const [activeOperationId, setActiveOperationId] = useState<number | null>(
+        null
+    );
 
     useEffect(() => {
-        const responses = Promise.all([
-            getDataApi('tasks'),
-            getDataApi('operations'),
-        ]);
+        const responses = Promise.all([getTaskApi(), getOperationsApi()]);
         responses.then(data => {
             const [tasks, operations] = data;
-            // setTasks(
-            //     tasks.map(task => {
-            //         const taskOperations = operations.filter(
-            //             operation => operation.taskId === task.id
-            //         );
-            //         return { ...task, operations: taskOperations };
-            //     })
-            // );
+
             setTasks(
                 tasks.map(task => ({
                     ...task,
@@ -44,35 +41,20 @@ function App() {
                     ),
                 }))
             );
-
-            // setTasks((tasks.reduce((acc, ce) => [...acc, {
-            //     ..ce,
-            //     operations: operations.filter((operation) => operation.taskId === ce.id)
-            // }], [])));
         });
-        // getTasksApi('tasks').then(data =>
-        //     setTasks(data.map(task => ({ ...task, operations: [] })))
-        // );
     }, []);
 
-    async function getDataApi(endpoint: string): Promise<Task[] | Operation[]> {
-        const response = await axios.get<Task[] | Operation[]>(
-            `http://localhost:3000/api/v1/${endpoint}`
-        );
-        return response.data;
-    }
-
     async function handleSubmit() {
-        const data = await callApi({
+        const data = await callTaskApi({
             data: {
                 addedDate: new Date(),
                 description,
                 name,
                 status: 'open',
             },
-            endpoint: 'tasks',
             method: 'post',
         });
+
         setTasks([...tasks, { ...data, operations: [] }]);
         setName('');
         setDescription('');
@@ -80,8 +62,8 @@ function App() {
 
     function handleFinishTask(task: Task) {
         return async function () {
-            await callApi({
-                endpoint: `tasks/${task.id}`,
+            await callTaskApi({
+                id: task.id,
                 data: { status: 'closed' },
                 method: 'patch',
             });
@@ -93,8 +75,8 @@ function App() {
 
     function handleDeleteTask(id: number) {
         return async function () {
-            await callApi({
-                endpoint: `tasks/${id}`,
+            await callTaskApi({
+                id,
                 method: 'delete',
             });
 
@@ -123,7 +105,7 @@ function App() {
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 ></textarea>
-                <button type="submit">Add</button>
+                <button type="submit">add</button>
             </form>
             <div>
                 {tasks.map(task => (
@@ -158,7 +140,23 @@ function App() {
                                 <div key={operation.id}>
                                     {operation.description}{' '}
                                     {operation.spentTime}
-                                    <button>Add spent time</button>
+                                    {activeOperationId === operation.id ? (
+                                        <AddSpentTimeForm
+                                            operation={operation}
+                                            setTasks={setTasks}
+                                            onCancel={setActiveOperationId}
+                                        />
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                setActiveOperationId(
+                                                    operation.id
+                                                )
+                                            }
+                                        >
+                                            Add spent time
+                                        </button>
+                                    )}
                                     <button>Delete</button>
                                 </div>
                             ))}

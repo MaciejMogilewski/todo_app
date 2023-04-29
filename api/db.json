@@ -20,6 +20,20 @@
       "name": "cccc",
       "status": "open",
       "id": 5
+    },
+    {
+      "addedDate": "2023-04-29T08:56:13.623Z",
+      "description": "wwwwww",
+      "name": "qqqqqq",
+      "status": "open",
+      "id": 6
+    },
+    {
+      "addedDate": "2023-04-29T09:07:02.333Z",
+      "description": "bvnv",
+      "name": "bnbv",
+      "status": "open",
+      "id": 7
     }
   ],
   "operations": [
@@ -61,14 +75,14 @@
     {
       "description": "sad",
       "addedDate": "2023-04-29T07:07:37.650Z",
-      "spentTime": 0,
+      "spentTime": 10,
       "taskId": 4,
       "id": 6
     },
     {
       "description": "sss",
       "addedDate": "2023-04-29T07:07:49.993Z",
-      "spentTime": 0,
+      "spentTime": 11,
       "taskId": 4,
       "id": 7
     },
@@ -78,6 +92,20 @@
       "spentTime": 0,
       "taskId": 5,
       "id": 8
+    },
+    {
+      "description": "zzzzz",
+      "addedDate": "2023-04-29T08:56:19.271Z",
+      "spentTime": 0,
+      "taskId": 6,
+      "id": 9
+    },
+    {
+      "description": "sdsd",
+      "addedDate": "2023-04-29T09:07:04.973Z",
+      "spentTime": 0,
+      "taskId": 7,
+      "id": 10
     }
   ]
 }

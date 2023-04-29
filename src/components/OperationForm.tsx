@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { callApi, Operation } from '../helpers/Api';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { callOperationsApi, Operation } from '../helpers/Api';
 import { Task } from '../App';
 
 interface OperationFormProps {
@@ -15,29 +15,18 @@ export function OperationForm({
 }: OperationFormProps) {
     const [value, setValue] = useState('');
 
-    async function handleAddOperation(e) {
+    async function handleAddOperation(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const operation: Operation = await callApi({
+        const operation: Operation = await callOperationsApi({
             data: {
                 description: value,
                 addedDate: new Date(),
                 spentTime: 0,
                 taskId,
             },
-            endpoint: 'operations',
             method: 'post',
         });
-
-        // setTasks(prev =>
-        //     prev.map(task => ({
-        //         ...task,
-        //         operations:
-        //             task.id !== taskId
-        //                 ? task.operations
-        //                 : [...task.operations, operation],
-        //     }))
-        // );
 
         setTasks(prev =>
             prev.map(task => {
