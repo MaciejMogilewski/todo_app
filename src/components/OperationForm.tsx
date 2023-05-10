@@ -1,6 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { callOperationsApi, Operation } from '../helpers/Api';
 import { Task } from '../App';
+import { Button, Stack, TextField } from '@mui/material';
 
 interface OperationFormProps {
     onCancel: Dispatch<number | null>;
@@ -43,13 +44,19 @@ export function OperationForm({
 
     return (
         <form onSubmit={handleAddOperation}>
-            <input
-                type="text"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-            />
-            <button type="submit">Add</button>
-            <button onClick={() => onCancel(null)}>Cancel</button>
+            <Stack spacing={2} direction="column">
+                <TextField
+                    type="text"
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                />
+                <Button variant="contained" type="submit">
+                    Add
+                </Button>
+                <Button variant="contained" onClick={() => onCancel(null)}>
+                    Cancel
+                </Button>
+            </Stack>
         </form>
     );
 }

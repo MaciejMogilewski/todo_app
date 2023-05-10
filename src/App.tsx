@@ -8,7 +8,9 @@ import {
     Operation,
 } from './helpers/Api.ts';
 import AddSpentTimeForm from './components/AddSpentTimeForm';
-import { Button, Container, Stack, TextField } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
+import calculateTotalTime from './helpers/Functions';
+import AddTaskForm from './components/AddTaskForm';
 
 export interface TaskStatus {
     status: 'open' | 'closed';
@@ -112,64 +114,69 @@ function App() {
         };
     }
 
-    function calculateTotalTime(operations: Operation[]): string {
-        const totalMinutes = operations.reduce(
-            (acc, ce) => acc + ce.spentTime,
-            0
-        );
-        return `${~~(totalMinutes / 60)}h ${totalMinutes % 60}m`;
-    }
-
     return (
         <Container maxWidth="md">
-            <form
-                onSubmit={async e => {
-                    e.preventDefault();
-                    await handleSubmit();
-                }}
-                style={{ marginBottom: 40 }}
-            >
-                <Stack spacing={2} direction="column">
-                    <TextField
-                        label="Title"
-                        variant="outlined"
-                        type="text"
-                        id="task"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
-                    <TextField
-                        label="Description"
-                        variant="outlined"
-                        id="description"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                    <Button variant="contained" type="submit">
-                        Add
-                    </Button>
-                </Stack>
-            </form>
+            <AddTaskForm
+                name={name}
+                setName={setName}
+                description={description}
+                setDescription={setDescription}
+                handleSubmit={handleSubmit}
+            />
             <div>
                 {tasks.map(task => (
                     <div key={task.id}>
-                        <b>{task.name} </b>
-                        <span>{task.description} </span>
+                        <div
+                            style={{
+                                marginBottom: 10,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                textAlign: 'center',
+                            }}
+                        >
+                            <Typography
+                                variant="h4"
+                                color="#424242"
+                                fontFamily="Roboto"
+                            >
+                                Title: {task.name}
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                color="#424242"
+                                fontFamily="Roboto"
+                            >
+                                Description: {task.description}
+                            </Typography>
+                        </div>
                         {task.status === 'open' ? (
                             <>
-                                <button
+                                <Button
+                                    style={{ marginRight: 10 }}
+                                    variant="contained"
                                     onClick={() => setActiveTaskId(task.id)}
                                 >
                                     Add operation
-                                </button>
-                                <button onClick={handleFinishTask(task)}>
+                                </Button>
+                                <Button
+                                    color="success"
+                                    style={{ marginRight: 10 }}
+                                    variant="contained"
+                                    onClick={handleFinishTask(task)}
+                                >
                                     Finish
-                                </button>
+                                </Button>
                             </>
                         ) : (
                             <b>{calculateTotalTime(task.operations)}</b>
                         )}
-                        <button onClick={handleDeleteTask(task)}>Delete</button>
+                        <Button
+                            color="error"
+                            variant="contained"
+                            onClick={handleDeleteTask(task)}
+                        >
+                            Delete
+                        </Button>
                         {activeTaskId === task.id && (
                             <OperationForm
                                 taskId={task.id}

@@ -1,41 +1,12 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-04-27T17:37:03.383Z",
-      "description": "blada",
-      "name": "dupa",
-      "status": "closed",
-      "id": 3
-    },
-    {
-      "addedDate": "2023-04-29T11:22:19.520Z",
-      "description": "wwwwww",
-      "name": "qqqqq",
-      "status": "closed",
-      "id": 4
-    },
-    {
-      "addedDate": "2023-04-29T11:34:00.199Z",
-      "description": "hhhhhhhhhh",
-      "name": "ggggggg",
-      "status": "closed",
-      "id": 5
-    },
-    {
-      "addedDate": "2023-04-29T11:48:05.565Z",
-      "description": "llllllll",
-      "name": "ppppppp",
-      "status": "closed",
-      "id": 6
-    }
-  ],
-  "operations": [
-    {
-      "description": "kkkkkkk",
-      "addedDate": "2023-04-29T11:48:09.525Z",
-      "spentTime": 666,
-      "taskId": 6,
+      "addedDate": "2023-05-10T18:28:34.694Z",
+      "description": "",
+      "name": "",
+      "status": "open",
       "id": 1
     }
-  ]
+  ],
+  "operations": []
 }
